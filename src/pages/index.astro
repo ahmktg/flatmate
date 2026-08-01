@@ -1,14 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Waveform from '../components/Waveform.astro';
-import { getMixes } from '../lib/notion.js';
+import { getMixes, getSiteContent } from '../lib/notion.js';
 
 let mixes = [];
+let content = {};
 try {
   mixes = (await getMixes()).slice(0, 3);
 } catch (e) {
   mixes = [];
 }
+try {
+  content = await getSiteContent();
+} catch (e) {
+  content = {};
+}
+
+const tagline = content.homepage_tagline || 'pressed flat, played loud';
+const bio =
+  content.homepage_bio ||
+  "Irish expat, NYC-based DJ with a wide range of taste — house, disco, whatever else earns its spot in the set. The goal is simple: play the tunes people are still thinking about on the walk home.";
 ---
 
 <Layout title="Flatmate — DJ & Producer">
@@ -18,15 +29,11 @@ try {
       src="/brand/flatmate-stack-red.svg"
       alt="Flatmate"
     />
-    <p class="tagline">pressed flat, played loud</p>
+    <p class="tagline">{tagline}</p>
   </section>
 
   <section class="wrap bio">
-    <p>
-      Short bio goes here — the sound you play, the rooms you've played in,
-      what a booker or fan should know in two sentences. Replace this
-      paragraph with your real bio before launch.
-    </p>
+    <p>{bio}</p>
   </section>
 
   {mixes.length > 0 && (

@@ -1,22 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getSiteContent } from '../lib/notion.js';
+
+let content = {};
+try {
+  content = await getSiteContent();
+} catch (e) {
+  content = {};
+}
+
+const bookingIntro =
+  content.booking_intro ||
+  'For bookings, rates, and availability, reach out with your event date, venue, and set length.';
+const bookingEmail = content.booking_email || 'flatmatedj@gmail.com';
 ---
 
 <Layout title="Booking — Flatmate">
   <section class="wrap">
     <h1>Booking</h1>
-    <p>
-      For bookings, rates, and availability, reach out with your event date,
-      venue, and set length.
-    </p>
+    <p>{bookingIntro}</p>
 
     <!--
       Swap this for a real form service when ready — Formspree or
       Web3Forms both have free tiers and need no backend of their own.
     -->
 
-    <a class="button" href="mailto:booking@flatmate.nyc">
-      booking@flatmate.nyc
+    <a class="button" href={`mailto:${bookingEmail}`}>
+      {bookingEmail}
     </a>
   </section>
 </Layout>

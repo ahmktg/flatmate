@@ -4,9 +4,13 @@ Astro site, static content in the code, mixes pulled from a Notion database
 at build time. No local tools needed once it's set up — edit Notion, click
 Republish, done.
 
-## 1. Create the Notion database
+## 1. Create the Notion databases
 
-Make a new Notion database (table view) with exactly these columns:
+Two databases, both already created in this workspace ("Mixes" and
+"Site Content") — this section is here for reference if you ever rebuild
+from scratch.
+
+**Mixes** (table view) with exactly these columns:
 
 | Column name       | Type  |
 |--------------------|-------|
@@ -18,16 +22,29 @@ Make a new Notion database (table view) with exactly these columns:
 Add one row per mix. `SoundCloud Link` is the normal share link from
 SoundCloud (not the embed code) — e.g. `https://soundcloud.com/you/mix-name`.
 
+**Site Content** (table view) with exactly these columns:
+
+| Column name | Type  |
+|-------------|-------|
+| Key         | Title |
+| Value       | Text  |
+
+One row per editable piece of text. The site currently looks up these keys:
+`homepage_tagline`, `homepage_bio`, `booking_intro`, `booking_email`. Edit
+the Value cell, click Republish, done — no code changes needed.
+
 ## 2. Connect Notion's API
 
 1. Go to notion.so/my-integrations → New integration → name it e.g. "DJ Site".
 2. Copy the generated **Internal Integration Token** — this is `NOTION_TOKEN`.
-3. Open your Mixes database in Notion → `•••` menu (top right) → Connections
+3. Open each database in Notion → `•••` menu (top right) → Connections
    → add the integration you just created. Without this step the API can't
-   see the table.
-4. Copy the database ID from its URL:
+   see the table. Do this for both Mixes and Site Content.
+4. Copy each database ID from its URL:
    `notion.so/yourworkspace/DATABASE_ID?v=...` — the 32-character string
-   before `?v=` is `NOTION_DATABASE_ID`.
+   before `?v=` is the database ID. You'll need both — one for
+   `NOTION_DATABASE_ID` (Mixes) and one for `NOTION_SITE_CONTENT_DATABASE_ID`
+   (Site Content).
 
 ## 3. Push this project to GitHub
 
@@ -40,7 +57,8 @@ works fine on GitHub's web UI, or use git if you prefer).
 2. Framework preset: Astro (auto-detected).
 3. Add environment variables in the project settings:
    - `NOTION_TOKEN` = the token from step 2
-   - `NOTION_DATABASE_ID` = the database ID from step 2
+   - `NOTION_DATABASE_ID` = the Mixes database ID from step 2
+   - `NOTION_SITE_CONTENT_DATABASE_ID` = the Site Content database ID from step 2
 4. Deploy. You'll get a live `.vercel.app` URL.
 5. Add your custom domain under Project → Settings → Domains, and point
    your DNS at it (see the DNS notes from our chat).
@@ -57,9 +75,9 @@ works fine on GitHub's web UI, or use git if you prefer).
 
 ## Editing content going forward
 
-- **Add/edit a mix:** edit the Notion table → click Republish. A new page
-  appears automatically at `/mixes/mix-title` with the SoundCloud player
-  embedded.
-- **Edit bio, homepage tagline, or booking info:** these live directly in
-  `src/pages/index.astro` and `src/pages/booking.astro` — edit the text in
-  GitHub's web editor and commit; Vercel rebuilds automatically on push.
+- **Add/edit a mix:** edit the Mixes table in Notion → click Republish. A
+  new page appears automatically at `/mixes/mix-title` with the SoundCloud
+  player embedded.
+- **Edit bio, homepage tagline, or booking info:** edit the matching row's
+  Value in the Site Content table in Notion → click Republish. No code
+  changes needed.
