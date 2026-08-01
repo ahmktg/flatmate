@@ -1,0 +1,60 @@
+---
+// A literal waveform: bar heights are derived from a seed string so each
+// mix gets a consistent, unique-looking "print" instead of a decorative
+// generic graphic. Set `animate` for the pulsing hero version.
+interface Props {
+  seed?: string;
+  bars?: number;
+  animate?: boolean;
+}
+const { seed = 'default', bars = 48, animate = false } = Astro.props;
+
+function seededHeights(str: string, count: number) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = (h * 31 + str.charCodeAt(i)) >>> 0;
+  }
+  const heights = [];
+  for (let i = 0; i < count; i++) {
+    h = (h * 1103515245 + 12345) >>> 0;
+    heights.push(20 + (h % 100) * 0.8); // 20–100%
+  }
+  return heights;
+}
+
+const heights = seededHeights(seed, bars);
+---
+
+<div class:list={['waveform', { animate }]} role="presentation">
+  {heights.map((h, i) => (
+    <span
+      class="bar"
+      style={`--h: ${h}%; --delay: ${(i % 12) * 0.07}s;`}
+    ></span>
+  ))}
+</div>
+
+<style>
+  .waveform {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 64px;
+    width: 100%;
+  }
+  .bar {
+    flex: 1;
+    height: var(--h);
+    background: var(--fm-red);
+    border-radius: 0;
+    min-width: 2px;
+    opacity: 0.9;
+  }
+  .waveform.animate .bar {
+    animation: pulse 1.1s ease-in-out var(--delay) infinite alternate;
+  }
+  @keyframes pulse {
+    from { transform: scaleY(0.65); opacity: 0.65; }
+    to { transform: scaleY(1); opacity: 1; }
+  }
+</style>

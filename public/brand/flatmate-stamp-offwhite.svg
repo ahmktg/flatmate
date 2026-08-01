@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 276" role="img" aria-label="FLATMATE stamp">
+  <rect x="6" y="6" width="292" height="264" fill="none" stroke="#F4F1E8" stroke-width="12"/>
+  <g transform="translate(32,32)">
+  <g fill="#F4F1E8">
+    <path transform="translate(0,0)" fill-rule="evenodd" d="M0 0 H54 V17 H17 V42 H48 V59 H17 V100 H0 Z"/>
+    <path transform="translate(62,0)" fill-rule="evenodd" d="M0 0 H17 V83 H54 V100 H0 Z"/>
+    <path transform="translate(124,0)" fill-rule="evenodd" d="M0 100 L16 0 H38 L54 100 H37 L33.5 77 H20.5 L17 100 Z M23.5 60 L27 22 L30.5 60 Z"/>
+    <path transform="translate(186,0)" fill-rule="evenodd" d="M0 0 H54 V17 H35.5 V100 H18.5 V17 H0 Z"/>
+    <path transform="translate(0,112)" fill-rule="evenodd" d="M0 100 V0 H17 L27 40 L37 0 H54 V100 H38 V36 L30.5 66 H23.5 L16 36 V100 Z"/>
+    <path transform="translate(62,112)" fill-rule="evenodd" d="M0 100 L16 0 H38 L54 100 H37 L33.5 77 H20.5 L17 100 Z M23.5 60 L27 22 L30.5 60 Z"/>
+    <path transform="translate(124,112)" fill-rule="evenodd" d="M0 0 H54 V17 H35.5 V100 H18.5 V17 H0 Z"/>
+    <path transform="translate(186,112)" fill-rule="evenodd" d="M0 0 H54 V17 H17 V42 H48 V59 H17 V83 H54 V100 H0 Z"/>
+  </g>
+  </g>
+</svg>

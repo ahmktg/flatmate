@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Flatmate brand tokens — see brand/README-developer.md */
+  --fm-red: #e0392a;
+  --fm-off-white: #f4f1e8;
+  --fm-navy: #14213d;
+  --fm-green: #1f4d3a;
+  --fm-ink: #141414;
+
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --text-h1: clamp(2.5rem, 7vw, 4rem);
+  --text-h2: clamp(1.75rem, 5vw, 2.5rem);
+  --text-h3: 1.375rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+  --space-6: 104px;
+
+  --border: 2px solid var(--fm-ink);
+  --radius: 0;
+  --container: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--fm-off-white);
+  color: var(--fm-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.65;
+}
+
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: var(--fm-navy);
+  line-height: 1.05;
+  margin: 0;
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+/* Below 24px, Anton is dropped for Space Grotesk 700 per brand rules */
+.eyebrow, .mix-date, .mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3);
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+nav .logo img {
+  height: 36px;
+  display: block;
+}
+
+nav .links {
+  display: flex;
+  gap: var(--space-3);
+}
+
+nav .links a {
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fm-ink);
+  transition: color 0.15s ease;
+}
+
+nav .links a:hover,
+nav .links a:focus-visible {
+  color: var(--fm-red);
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--fm-ink);
+  outline-offset: 2px;
+}
+
+/* Section theming — off-white default, navy, green takeover */
+.section-navy {
+  background: var(--fm-navy);
+  color: var(--fm-off-white);
+}
+.section-navy h1, .section-navy h2, .section-navy h3 {
+  color: var(--fm-off-white);
+}
+.section-green {
+  background: var(--fm-green);
+  color: var(--fm-off-white);
+}
+.section-green h1, .section-green h2, .section-green h3 {
+  color: var(--fm-off-white);
+}
+
+.button {
+  display: inline-block;
+  padding: 14px 32px;
+  background: var(--fm-red);
+  color: var(--fm-off-white);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: var(--border);
+  border-color: var(--fm-red);
+  border-radius: var(--radius);
+}
+.button:hover, .button:focus-visible {
+  background: var(--fm-off-white);
+  color: var(--fm-red);
+}
+.button-outline {
+  background: transparent;
+  color: var(--fm-off-white);
+  border: 2px solid var(--fm-off-white);
+}
+.button-outline:hover, .button-outline:focus-visible {
+  background: var(--fm-off-white);
+  color: var(--fm-navy);
+}
+
+footer {
+  background: var(--fm-navy);
+  color: var(--fm-off-white);
+  margin-top: var(--space-6);
+  padding: var(--space-4) var(--space-3);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+}
+footer img {
+  height: 32px;
+  margin-bottom: var(--space-2);
+}

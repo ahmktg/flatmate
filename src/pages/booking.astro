@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Booking — Flatmate">
+  <section class="wrap">
+    <h1>Booking</h1>
+    <p>
+      For bookings, rates, and availability, reach out with your event date,
+      venue, and set length.
+    </p>
+
+    <!--
+      Swap this for a real form service when ready — Formspree or
+      Web3Forms both have free tiers and need no backend of their own.
+    -->
+
+    <a class="button" href="mailto:booking@flatmate.nyc">
+      booking@flatmate.nyc
+    </a>
+  </section>
+</Layout>
+
+<style>
+  .wrap { padding: var(--space-5) var(--space-3) var(--space-5); max-width: 620px; }
+  p { margin-top: var(--space-2); }
+  .button { margin-top: var(--space-3); }
+</style>

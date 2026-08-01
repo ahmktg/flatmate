@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Flatmate — DJ & producer' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/flatmate-favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" />
+  </head>
+  <body>
+    <nav>
+      <a class="logo" href="/" aria-label="Flatmate — home">
+        <img src="/brand/flatmate-stamp-red.svg" alt="Flatmate" />
+      </a>
+      <div class="links">
+        <a href="/mixes">Mixes</a>
+        <a href="/booking">Booking</a>
+      </div>
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <img src="/brand/flatmate-stamp-offwhite.svg" alt="Flatmate" />
+      <p>&copy; {new Date().getFullYear()} Flatmate. Booking inquiries welcome.</p>
+    </footer>
+  </body>
+</html>

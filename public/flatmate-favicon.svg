@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="FLATMATE">
+  <rect width="100" height="100" fill="#E0392A"/>
+  <rect x="12" y="10" width="76" height="80" fill="none" stroke="#F4F1E8" stroke-width="7"/>
+  <path transform="translate(37,26) scale(0.48)" fill="#F4F1E8" d="M0 0 H54 V17 H17 V42 H48 V59 H17 V100 H0 Z"/>
+</svg>
