@@ -1,14 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Waveform from '../../components/Waveform.astro';
-import { getMixes } from '../../lib/notion.js';
-
-let mixes = [];
-try {
-  mixes = await getMixes();
-} catch (e) {
-  mixes = [];
-}
+import { mixes } from '../../data/mixes.js';
 ---
 
 <Layout title="Mixes — Flatmate">
@@ -16,15 +9,13 @@ try {
     <h1>Mixes</h1>
 
     {mixes.length === 0 && (
-      <p class="empty">
-        No mixes yet — add a row to the Notion database to publish one here.
-      </p>
+      <p class="empty">No mixes yet.</p>
     )}
 
     <div class="mix-list">
       {mixes.map((mix) => (
         <a class="mix-row" href={`/mixes/${mix.slug}`}>
-          <Waveform seed={mix.id} bars={24} />
+          <Waveform seed={mix.slug} bars={24} />
           <div class="meta">
             <span class="mix-title">{mix.title}</span>
             {mix.date && <span class="mix-date">{mix.date}</span>}

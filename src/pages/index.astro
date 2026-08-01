@@ -1,15 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Waveform from '../components/Waveform.astro';
-import { getMixes, getSiteContent } from '../lib/notion.js';
+import { mixes as allMixes } from '../data/mixes.js';
+import { getSiteContent } from '../lib/notion.js';
 
-let mixes = [];
+const mixes = allMixes.slice(0, 3);
 let content = {};
-try {
-  mixes = (await getMixes()).slice(0, 3);
-} catch (e) {
-  mixes = [];
-}
 try {
   content = await getSiteContent();
 } catch (e) {
@@ -42,7 +38,7 @@ const bio =
       <div class="mix-list">
         {mixes.map((mix) => (
           <a class="mix-row" href={`/mixes/${mix.slug}`}>
-            <Waveform seed={mix.id} bars={24} />
+            <Waveform seed={mix.slug} bars={24} />
             <span class="mix-title">{mix.title}</span>
           </a>
         ))}

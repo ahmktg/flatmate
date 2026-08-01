@@ -1,10 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Waveform from '../../components/Waveform.astro';
-import { getMixes } from '../../lib/notion.js';
+import { mixes } from '../../data/mixes.js';
 
-export async function getStaticPaths() {
-  const mixes = await getMixes();
+export function getStaticPaths() {
   return mixes.map((mix) => ({
     params: { slug: mix.slug },
     props: { mix },
@@ -21,7 +20,7 @@ const embedSrc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
 <Layout title={`${mix.title} — Flatmate`}>
   <section class="wrap">
     <a class="back" href="/mixes">&larr; All mixes</a>
-    <Waveform seed={mix.id} bars={48} />
+    <Waveform seed={mix.slug} bars={48} />
     <h1>{mix.title}</h1>
     {mix.date && <p class="mix-date">{mix.date}</p>}
     {mix.description && <p class="description">{mix.description}</p>}
